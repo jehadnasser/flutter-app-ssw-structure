@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Author: Jehad Nasser
+# Date Cteated: 15/06/2019
+# Description: This script creates a specific flutter structure
+# Date Modified: 15/06/2019
+
+echo 'Flutter app is structuring..By Jehad Nasser, 2019'
+
+#Paths and files to create
+path="$(pwd)/lib"
+test_path="$(pwd)/test"
+dir_name="constants,screens,services,widgets"
+index_file="index.dart"
+constant_string_file="strings.dart"
+constant_dir_path="$path/constants"
+main_file="main.dart"
+route_file="routes.dart"
+main_test_file="widget_test.dart"
+
+#Create the dir structure
+eval "mkdir -p '$path'/{${dir_name}}"
+
+
+#Create constants/strings.dart file with demo content
+echo $"export 'strings.dart';"> "$constant_dir_path/$index_file"
+{
+  echo "// Project constants"
+  echo "class Strings {"
+  echo "    // Add constants here"
+  echo "    //Sample: static const String demo = 'some value';"
+  echo "}"
+
+}> "$constant_dir_path/$constant_string_file"
+
+
+#Create main.dart and routes.dart with demo contents
+echo $"export 'strings.dart';"> "$path/$main_file"
+echo $"export 'strings.dart';"> "$path/$route_file"
+{
+  echo "// Project starts here"
+  echo "import 'routes.dart';"
+  echo ""
+  echo "void main() => Routes();"
+
+}> "$path/$main_file"
+
+{
+  echo "import 'package:flutter/material.dart';"
+  echo ""
+  echo "class Routes {"
+  echo ""
+  echo "    Routes () {}"
+  echo ""
+  echo "}"
+
+}> "$path/$route_file"
+
+echo "" > "$test_path/$main_test_file"
+
+echo "Done..Your app is ready"
